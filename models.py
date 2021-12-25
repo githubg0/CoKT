@@ -242,7 +242,7 @@ class CoKT(nn.Module): #
         for i in range(0, self.heads_num):
             # trans_bg = torch.matmul(batch_bg_tensor, self.heads[i])
             weight = F.softmax(
-                torch.matmul(self.batch_emb[i](hidden_v.unsqueeze(1)), self.bg_emb[i](all_hidden_v).transpose(2, 1)) / math.sqrt(self.node_dim * 3), dim = 2)
+                torch.matmul(self.batch_emb[i](hidden_v.unsqueeze(1)), self.bg_emb[i](all_hidden_v).transpose(2, 1)) / math.sqrt(self.node_dim), dim = 2)
                 # torch.matmul(self.batch_emb[i](v.unsqueeze(1)), self.bg_emb[i](all_bg_v).transpose(2, 1)) / math.sqrt(self.node_dim * 2), dim = 2)
             this_rep = torch.matmul(weight, bg_context_resp)
             heads_list.append(this_rep)
